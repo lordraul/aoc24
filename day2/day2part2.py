@@ -18,10 +18,10 @@ def problemDampener(nums):
     for i in range(len(nums)):
         s1 = []
         s2 = []
-        try: s1 = nums[0::i]
-        except: pass
+        try: s1 = nums[0:i:]
+        except: s1 = []
         try: s2 = nums[i+1::]
-        except: pass
+        except: s2 = []
         if isSafe(s1 + s2):
             return True
     return False
