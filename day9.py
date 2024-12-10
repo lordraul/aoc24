@@ -11,22 +11,21 @@ def printFilemap(filemap):
     print(line)
 
 def fillFiles(filemap):
-    printFilemap(filemap)
-
     for fileID, length in [f for f in filemap[::-1] if f[0] != -1]:
         for i in range(filemap.index((fileID, length))):
             s = filemap[i]
-            if s[0] == -1:
+            if s[0] == -1 and i < filemap.index((fileID, length)) and s[1] >= length:
+                # printFilemap(filemap)
                 if s[1] > length:
                     filemap[i] = (s[0], s[1] - length)
                     filemap[filemap.index((fileID, length))] = (-1, length)
                     filemap.insert(i, (fileID, length))
-                    # return fillFiles(filemap)
+                    break
                 elif s[1] == length:
                     filemap[filemap.index((fileID, length))] = (-1, length)
                     filemap[i] = (fileID, length)
-                    # return fillFiles(filemap)
-                printFilemap(filemap)
+                    break
+    # printFilemap(filemap)
     return filemap
                         
 
