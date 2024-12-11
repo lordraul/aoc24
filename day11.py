@@ -1,4 +1,4 @@
-with open("day11input.txt", "r") as input:
+with open("day11input.txt", "a") as input:
     stones = [int(stone) for stone in input.readlines()[0].strip().split(" ")]
     
     for blink in range(75):
@@ -17,3 +17,4 @@ with open("day11input.txt", "r") as input:
             i += 1
         print(f"blink{blink} complete")
     print(f"There are {len(stones)} stones after {blink+1} blinks")
+    input.write(" ".join([str(stone) for stone in stones]))
